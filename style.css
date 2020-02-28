@@ -1,0 +1,347 @@
+html { 
+  height: 100%; 
+   }
+
+
+.G20logo {
+
+  position: absolute;
+  left: 2%;
+  top: 11%;
+  
+
+} 
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    padding: 0 0 15px 0;
+    line-height: 1.8em;
+    color: #152765; 
+}
+
+h1,
+h2,
+h3,
+h4
+ {
+    font: normal 175% sans-serif;
+    margin: 0 0 15px 0;
+    padding: 10px 0 5px 0;
+}
+
+
+h2,h3 {
+    color: #152765;
+    letter-spacing: 0.08em;
+}
+
+h4 {
+  font: bold 95% arial, sans-serif;
+  padding: 0 0 0px 0;
+  color: #152765;
+}
+
+
+
+
+/* navigator bar */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #ccd3d3;
+  width: 1265px;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: #152765;
+  text-align: center;
+  padding: 8px 16px;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+}
+
+li a:hover:not(.picked) {
+  background-color: #F2BD4E;
+}
+
+.picked {
+  background-color: #F2BD4E;
+}
+
+
+
+/* search bar */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body{
+background: #ffffff;
+font-family: sans-serif;
+}
+
+.search {
+width: 60%;
+position: relative;
+display: flex;
+}
+
+.searchTerm {
+width: 100%;
+border: 3px solid #fff;
+border-right: none;
+padding: 5px;
+height: 20px;
+border-radius: 5px 0 0 5px;
+outline: none;
+color: #9DBFAF;
+}
+
+.searchTerm:focus{
+color: #110A02;
+}
+
+.searchButton {
+width: 40px;
+height: 36px;
+border: 1px solid #F6DDAB;
+background: #F6DDAB;
+text-align: center;
+color: #fff;
+border-radius: 0 5px 5px 0;
+cursor: pointer;
+font-size: 20px;
+}
+
+/*the search bar change!*/
+.wrap{
+width: 30%;
+position: absolute;
+top: 15%;
+left: 84%;
+transform: translate(-50%, -50%);
+}
+
+/* Style all font awesome icons */
+
+/* Add a hover effect if you want */
+.fa:hover {
+  opacity: 0.7;
+}
+
+/* Set a specific color for each brand */
+
+/* Facebook */
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+  position: absolute;
+      top: 14%;
+      left: 15%;
+      transform: translate(-50%, -50%);
+  }
+
+/* Twitter */
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+  position: absolute;
+      top: 14%;
+      left: 18%;
+      transform: translate(-50%, -50%);
+}
+
+  /* IG */ 
+  .fa-instagram {
+      background: #8D4019;
+      color: white;
+      position: absolute;
+      top: 14%;
+      left: 21%;
+      transform: translate(-50%, -50%);
+}
+
+/* Website */
+  .fa-rss {
+  background: #ff6600;
+  color: white;
+  position: absolute;
+  top: 14%;
+  left: 24%;
+  transform: translate(-50%, -50%);
+}
+
+.fa {
+  padding: 3px;
+  font-size: 30px;
+  width: 25px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 25%;
+  
+}
+
+#G20logo_picture {
+  width: 1265px;
+  position: relative;
+  height: 148px;
+  background: url(image/head.jpg) no-repeat;
+}
+
+
+/* adjust h1 Topic */
+
+#G20logo_picture h1{
+    font: normal 140% 'century gothic', arial, sans-serif;
+    border-bottom: 0;
+    text-transform: none;
+    margin: 0;
+    position: absolute;
+    left: 9%;
+    }
+
+#topic h1,
+#topic h1 a,
+#topic h1 a:hover {
+    padding: 10px 0 0 0;
+    color: #fff;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    padding: 101px 0 10px 16px;
+
+}
+
+.topic_color {
+    color: #644508;
+}
+
+/* the detail on the left */
+
+#center_body {
+  width: 1266px;
+  overflow: hidden;
+  background: #e3e9e9;
+}
+
+
+#detail_left {
+  text-align: left;
+  width: 600px;
+  float: left;
+  padding: 20px 0 15px 30px;
+}
+
+.mapright {
+  float: right;
+  text-align: center;
+  width: 500px;
+  padding: 20px 80px 15px 15px;
+}
+
+#footer {
+  width: 1266px;
+  height: 23px;
+  padding: 17px 0 4px 0;
+  text-align: center;
+  background: #ccd3d3;
+  color: #152765;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-size: 80%;
+}
+
+#Edu_Bar_div {
+  display:inline-block;
+  
+}
+#Mil_Bar_div {
+ display:inline-block;
+}
+#Health_Bar_div {
+  display:inline-block;
+  
+}
+.center {
+  width:100%;
+  margin:0 auto;
+  display:inline-block;
+   }
+
+   #Edu_current_div {
+    display:inline-block;
+    
+  }
+  #Mil_current_div {
+   display:inline-block;
+  }
+  #Health_current_div {
+    display:inline-block;
+    
+  }
+
+  #content2 {
+    text-align: center;
+    width: 1200px;
+    float: left;
+    padding: 20px 0 15px 30px;
+  }
+
+/* the paragraph box */
+  .div1 {
+    width: 800px;
+    height: 100px;
+    background: #F6DDAB;
+    color: #152765;
+    font-style: italic;
+    padding: 10px 0 4px 0;
+    box-sizing: border-box;
+    text-align: center;
+    letter-spacing: 0.07em;
+    font-size: 100%;
+    position: relative; 
+    left: 31%;
+    transform: translate(-20%, -10%);
+  }
+
+  .div2 {
+    width: 800px;
+    height: 100px;
+    background: #F6DDAB;
+    color: #152765;
+    font-style: italic;
+    padding: 10px 0 4px 0;
+    box-sizing: border-box;
+    text-align: center;
+    letter-spacing: 0.07em;
+    font-size: 100%;
+    position: relative; 
+    left: 31%;
+    transform: translate(-20%, 20%);
+  }
+
+  .div3 {
+    width: 800px;
+    height: 100px;
+    background: #F6DDAB;
+    color: #152765;
+    font-style: italic;
+    padding: 10px 0 4px 0;
+    box-sizing: border-box;
+    text-align: center;
+    letter-spacing: 0.07em;
+    font-size: 100%;
+    position: relative; 
+    left: 31%;
+    transform: translate(-20%, 20%);
+  }
+
