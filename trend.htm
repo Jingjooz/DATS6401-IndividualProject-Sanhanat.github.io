@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css"/> 
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>G20 Government Expenditure - Trend</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current', {packages: ['corechart']});
+        google.charts.setOnLoadCallback(drawAllSheets);
+        
+        function drawAllSheets() {
+            drawSheetName('EduChange', 'SELECT A,B,C,D,E,F',
+                         EduChangeResponseHandler);
+            drawSheetName('EduPerChange', 'SELECT A,B,C,D,E,F,G,H,I,J,K',
+                          EduPerChangeResponseHandler);
+            drawSheetName('EduChange', 'SELECT A,G',
+                          EduAVGResponseHandler);
+
+            drawSheetName('MilChange', 'SELECT A,B,C,D,E,F',
+                          MilChangeResponseHandler);
+            drawSheetName('MilPerChange', 'SELECT A,B,C,D,E,F,G,H,I,J,K,L',
+                           MilPerChangeResponseHandler);
+            drawSheetName('MilChange', 'SELECT A,G',
+                           MilAVGResponseHandler);
+
+            drawSheetName('HealthChange', 'SELECT A,B,C,D,E,F',
+                           HealthChangeResponseHandler);
+            drawSheetName('HealthPerChange', 'SELECT A,B,C,D,E,F,G,H,I,J,K',
+                            HealthPerChangeResponseHandler);
+            drawSheetName('HealthChange', 'SELECT A,G',
+                            HealthAVGResponseHandler);
+            
+            drawSheetName('EduTrend', 'SELECT C,D',
+                            EduTrendResponseHandler);
+            drawSheetName('MilTrend', 'SELECT C,D',
+                           MilTrendResponseHandler);
+            drawSheetName('HealthTrend', 'SELECT C,D',
+                           HealthTrendResponseHandler);
+
+            
+         } //drawAllSheets
+
+        function drawSheetName(sheetName, query, responseHandler) {
+          var queryString = encodeURIComponent(query);
+          var query = new google.visualization.Query(
+              "https://docs.google.com/spreadsheets/d/1ZpRWxwhz1onjC7SyTYvFTPAoxefZgMnDXPXh6WYN-Y0/gviz/tq?sheet=" + sheetName + "&headers=1&tq=" + queryString
+          );
+          query.send(responseHandler);
+      } //drawSheetName
+      // Education
+    //compare Edu change by country in 2012-2016
+    function EduChangeResponseHandler(response) {
+        var data = response.getDataTable();
+        data.sort({column: 5, desc:true});
+
+        var options = {height: 400,
+            title: 'Change of Educational spending by country in 2012-2016',
+            vAxis : {title: 'Change (Billion $)'},
+            hAxis: {title: 'Year'},
+            backgroundColor: '#e3e9e9' };
+
+        var chart = new google.visualization.ColumnChart(
+            document.getElementById("EduChange_div")
+        );
+        chart.draw(data, options); 
+    } //EduChangeResponseHandler
+
+
+      //compare Edu %YOY by country in 2012-2016
+      function EduPerChangeResponseHandler(response) {
+        var data = response.getDataTable();
+      
+        var options = {height: 400,
+            title: 'Growth rate of Educational spending by country in 2012-2016',
+            vAxis : {title: 'Growth rate (%YOY)'},
+            hAxis: {title: 'Year'},
+            curveType: 'function',
+            backgroundColor: '#e3e9e9' };
+
+        var chart = new google.visualization.LineChart(
+                    document.getElementById("EduPerChange_div")
+        );
+        chart.draw(data, options); 
+    } //EduPerChangeResponseHandler
+
+          // Military
+    //compare Mil change by country in 2012-2016
+    function MilChangeResponseHandler(response) {
+        var data = response.getDataTable();
+        data.sort({column: 5, desc:true});
+
+        var options = {height: 400,
+            title: 'Change of Military spending by country in 2012-2016',
+            vAxis : {title: 'Change (Billion $)'},
+            hAxis: {title: 'Year'},
+            backgroundColor: '#e3e9e9' };
+
+        var chart = new google.visualization.ColumnChart(
+            document.getElementById("MilChange_div")
+        );
+        chart.draw(data, options); 
+    } //MilChangeResponseHandler
+
+
+      //compare Mil %YOY by country in 2012-2016
+      function MilPerChangeResponseHandler(response) {
+        var data = response.getDataTable();
+ 
+        var options = {height: 400,
+            title: 'Growth rate of Military spending by country in 2012-2016',
+            vAxis : {title: 'Growth rate (%YOY)'},
+            hAxis: {title: 'Year'},
+            curveType: 'function',
+            backgroundColor: '#e3e9e9' };
+
+        var chart = new google.visualization.LineChart(
+                    document.getElementById("MilPerChange_div")
+        );
+        chart.draw(data, options); 
+    } //MilPerChangeResponseHandler
+
+          // Healthcare
+    //compare Health change by country in 2012-2016
+    function HealthChangeResponseHandler(response) {
+        var data = response.getDataTable();
+        data.sort({column: 5, desc:true});
+
+        var options = {height: 400,
+            title: 'Change of Healthcare spending by country in 2012-2016',
+            vAxis : {title: 'Change (Billion $)'},
+            hAxis: {title: 'Year'},
+            backgroundColor: '#e3e9e9' };
+
+        var chart = new google.visualization.ColumnChart(
+            document.getElementById("HealthChange_div")
+        );
+        chart.draw(data, options); 
+    } //HealthChangeResponseHandler
+
+
+      //compare Health %YOY by country in 2012-2016
+      function HealthPerChangeResponseHandler(response) {
+        var data = response.getDataTable();
+
+        var options = {height: 400,
+            title: 'Growth rate of Healthcare spending by country in 2012-2016',
+            vAxis : {title: 'Growth rate (%YOY)'},
+            hAxis: {title: 'Year'},
+            curveType: 'function',
+            backgroundColor: '#e3e9e9' };
+
+        var chart = new google.visualization.LineChart(
+                    document.getElementById("HealthPerChange_div")
+        );
+        chart.draw(data, options); 
+    } //HealthPerChangeResponseHandler
+
+        //compare the relationship between Educational and GDP per capita for G20 Countries
+      function EduTrendResponseHandler(response) {
+        var data = response.getDataTable();
+
+        var options = {
+            title: 'Educational Spending per capita VS GDP per capita (2012-2016)',
+            hAxis: {title: 'Educational spending per capita ($ per person)', minValue: 0, maxValue: 15},
+            vAxis: {title: 'GDP per capita ($ per person)', minValue: 0, maxValue: 15},
+            legend: 'none',
+            backgroundColor: '#e3e9e9' ,
+            trendlines: { 0: {}, color: '#FB2535'},
+            height: 400
+        };
+
+        var chart = new google.visualization.ScatterChart(
+                    document.getElementById("EduTrend_div")
+        );
+        chart.draw(data, options); 
+    } //EduTrendResponseHandler
+
+            //compare the relationship between Military and GDP per capita for G20 Countries
+            function MilTrendResponseHandler(response) {
+                var data = response.getDataTable();
+        
+                var options = {
+                    title: 'Military Spending per capita VS GDP per capita (2012-2016)',
+                    hAxis: {title: 'Military spending per capita ($ per person)', minValue: 0, maxValue: 15},
+                    vAxis: {title: 'GDP per capita ($ per person)', minValue: 0, maxValue: 15},
+                    legend: 'none',
+                    backgroundColor: '#e3e9e9' ,
+                    trendlines: { 0: {}, color: '#FB2535'},
+                    height: 400
+                };
+        
+                var chart = new google.visualization.ScatterChart(
+                            document.getElementById("MilTrend_div")
+                );
+                chart.draw(data, options); 
+            } //EduTrendResponseHandler
+
+     //compare the relationship between Healthcare and GDP per capita for G20 Countries
+      function HealthTrendResponseHandler(response) {
+        var data = response.getDataTable();
+
+        var options = {
+            title: 'Healthcare Spending per capita VS GDP per capita (2012-2016)',
+            hAxis: {title: 'Healthcare spending per capita ($ per person)', minValue: 0, maxValue: 15},
+            vAxis: {title: 'GDP per capita ($ per person)', minValue: 0, maxValue: 15},
+            legend: 'none',
+            backgroundColor: '#e3e9e9' ,
+            trendlines: { 0: {}, color: '#FB2535'},
+            height: 400
+        };
+
+        var chart = new google.visualization.ScatterChart(
+                    document.getElementById("HealthTrend_div")
+        );
+        chart.draw(data, options); 
+    } //HealthTrendResponseHandler
+
+          //compare Edu average growth rate in 2012-2016
+          function EduAVGResponseHandler(response) {
+            var data = response.getDataTable();
+            data.sort({column: 1, desc:true});
+    
+            var options ={ height: 400,
+                legend: 'none',
+                bars: 'horizontal',
+                title: 'Average educational spending growth rate in 2012-2016 (%)',
+                vAxis: {title: 'Country'},
+                hAxis: {title: 'Average growth (%)'},
+                backgroundColor: '#e3e9e9' };
+            
+    
+            var chart = new google.visualization.BarChart(
+                        document.getElementById("EduAVG_div")
+            );
+            chart.draw(data, options); 
+        } //EduAVGResponseHandler
+
+                  //compare Edu average growth rate in 2012-2016
+          function EduAVGResponseHandler(response) {
+            var data = response.getDataTable();
+            data.sort({column: 1, desc:true});
+    
+            var options ={ height: 400,
+                legend: 'none',
+                bars: 'horizontal',
+                title: 'Average Educational Spending Growth Rate in 2012-2016 (%)',
+                vAxis: {title: 'Country'},
+                hAxis: {title: 'Average growth (%)'},
+                backgroundColor: '#e3e9e9' };
+            
+    
+            var chart = new google.visualization.BarChart(
+                        document.getElementById("EduAVG_div")
+            );
+            chart.draw(data, options); 
+        } //EduAVGResponseHandler
+    
+              //compare Mil average growth rate in 2012-2016
+              function MilAVGResponseHandler(response) {
+                var data = response.getDataTable();
+                data.sort({column: 1, desc:true});
+        
+                var options ={ height: 400,
+                    legend: 'none',
+                    bars: 'horizontal',
+                    title: 'Average Military Spending Growth Rate in 2012-2016 (%)',
+                    vAxis: {title: 'Country'},
+                    hAxis: {title: 'Average growth (%)'},
+                    backgroundColor: '#e3e9e9' };
+                
+        
+                var chart = new google.visualization.BarChart(
+                            document.getElementById("MilAVG_div")
+                );
+                chart.draw(data, options); 
+            } //MilAVGResponseHandler
+    
+                  //compare Health average growth rate in 2012-2016
+                  function HealthAVGResponseHandler(response) {
+                    var data = response.getDataTable();
+                    data.sort({column: 1, desc:true});
+            
+                    var options ={ height: 400,
+                        legend: 'none',
+                        bars: 'horizontal',
+                        title: 'Average Healthcare Spending Growth Rate in 2012-2016 (%)',
+                        vAxis: {title: 'Country'},
+                        hAxis: {title: 'Average growth (%)'},
+                        backgroundColor: '#e3e9e9' };
+                    
+            
+                    var chart = new google.visualization.BarChart(
+                                document.getElementById("HealthAVG_div")
+                    );
+                    chart.draw(data, options); 
+                } //HealthAVGResponseHandler
+        
+
+    
+
+</script>
+
+      
+
+
+    
+</head>
+
+<body>
+    <div id="overall">
+        <div id="topbar">
+            <div id="G20logo_picture">
+                <div class="G20logo">
+                <img src="image/Logo.png" alt="G20 logo" width="123" height="116"><!--G20logo-->
+            </div>
+                   <div id="topic">
+                    <h1><a href="index.htm">GOVERNMENT EXPENDITURE<span class="topic_color"> | DATA</span></a></h1>
+                    </div><!--topic-->
+            </div><!--G20logo_picture-->
+
+            <!--serach bar-->
+            <div class="wrap">
+                <div class="search">
+                   <input type="text" class="searchTerm" placeholder="Search G20">
+                   <button type="submit" class="searchButton">
+                     <i class="fa fa-search"></i>
+                  </button>
+                </div>
+            </div> <!--serach bar-->
+
+             <!--social button-->
+            <div class="warp">
+                <a href="https://www.facebook.com/g20org" class="fa fa-facebook"></a>
+                <a href="https://twitter.com/g20org" class="fa fa-twitter"></a>
+                <a href="https://www.instagram.com/g20org/" class="fa fa-instagram"></a>
+                <a href="https://g20.org/en/Pages/home.aspx" class="fa fa-rss"></a>
+           </div>
+
+           <div id="menubar">
+            <ul id="menu">
+                <li><a href="index.htm"><i class="fa fa-fw fa-home"></i> HOME</a></li>
+                <li><a href="overview.htm"><i class="fa fa-fw fa-bar-chart"></i> OVERVIEW</a></li>
+                <li><a href="comparison.htm"><i class="fa fa-fw fa-balance-scale"></i> COMPARISON</a></li>
+                <li><a class="picked" href="trend.htm"><i class="fa fa-fw fa-line-chart"></i> TREND</a></li>
+                <li><a href="about.htm"><i class="fa fa-fw fa-clipboard"></i> ABOUT</a></li>
+            </ul>
+            <!-- menu -->
+        </div>
+        <!-- menubar -->
+    </div>
+    <!-- topbar -->
+
+    <div id="center_body">
+       
+        <h5 style="text-align:center; 
+        font: bold 120% 'century gothic', arial, sans-serif;
+        color: #152765;
+        margin: 0 0 0 0;
+        padding: 30px 0 5px 0;">Top 10 Fastest growing countries in each spending purpose in fixed value and in percentage</h5>
+
+        <h5 style="text-align:center; 
+        font: italic bold 100% 'century gothic', arial, sans-serif;
+        color: #82171F;
+        margin: 0 0 0 0;
+        padding: 30px 0 5px 0;">-- Educational Spending Trend --</h5>
+        <div class="div3">There were no general trends in fixed value and in percentage change of educational spending over time. The US had the big change between each year among other countries. In 2016, there were only three countries, including Germany, France, and US, where were positive growth rate.  </div>
+        <div id="EduChange_div" style="width: 1100px; height: 400px; position: relative; left: 8%"></div>
+        <div id="EduPerChange_div" style="width: 1100px; height: 400px; position: relative; left: 8%"></div>  
+        <div id="EduAVG_div" style="width: 1100px; height: 400px; position: relative; left: 11%"></div>
+
+        <h5 style="text-align:center; 
+        font: italic bold 100% 'century gothic', arial, sans-serif;
+        color: #82171F;
+        margin: 0 0 0 0;
+        padding: 30px 0 5px 0;">-- Military Spending Trend --</h5>
+        <div class="div3">There were positive trends in fixed value and percent change of military spending from 2015-16. US and China had the big change between each year, especially 2013. In 2016, top 10 fastest-growing military spending show positive rate, led to Italy, Turkey, India, and Japan, respectively. </div>
+        <div id="MilChange_div" style="width: 1100px; height: 400px; position: relative; left: 8%"></div>
+        <div id="MilPerChange_div" style="width: 1100px; height: 400px; position: relative; left: 8%"></div>
+        <div id="MilAVG_div" style="width: 1100px; height: 400px; position: relative; left: 11%"></div>
+
+        <h5 style="text-align:center; 
+        font: italic bold 100% 'century gothic', arial, sans-serif;
+        color: #82171F;
+        margin: 0 0 0 0;
+        padding: 30px 0 5px 0;">-- Healthcare Spending Trend --</h5>
+        <div class="div3">There were positive trends in fixed value and in percentage change of health spending from 2015-16. The US had the big positive change between each year. In 2016, top 10 fastest-growing health spending show positive rate, led to Japan, Indonesia, and India, and Korea, respectively. </div>
+        <div id="HealthChange_div" style="width: 1100px; height: 400px; position: relative; left: 8%"></div>
+        <div id="HealthPerChange_div" style="width: 1100px; height: 400px; position: relative; left: 8%"></div>
+        <div id="HealthAVG_div" style="width: 1100px; height: 400px; position: relative; left: 11%"></div>
+
+        <h5 style="text-align:center; 
+        font: bold 120% 'century gothic', arial, sans-serif;
+        color: #152765;
+        margin: 0 0 0 0;
+        padding: 30px 0 5px 0;">The Relationship between Average Spending in each purpose and Average Income for G20 Countries</h5>
+        <div class="div3">There was positive relationship between spending per capita in each purpose and GDP per capita, in line with the correction of 0.92, 0.47, and 0.82 for education, military, and health, respectively. This makes sense since higher average income resulted in more average spending. </div>
+        <div id="EduTrend_div" style="width: 1100px; height: 400px; position: relative; left: 8%"></div>
+        <div id="MilTrend_div" style="width: 1100px; height: 400px; position: relative; left: 8%"></div>
+        <div id="HealthTrend_div" style="width: 1100px; height: 400px; position: relative; left: 8%"></div>
+        
+    </div>
+    <!-- center_body -->
+
+
+    <div id="footer">
+        All content &copy; 2020. All rights reserved.
+    
+    </div>
+    <!-- footer -->
+</div>
+<!-- overall -->
+</body>
+
+</html>
