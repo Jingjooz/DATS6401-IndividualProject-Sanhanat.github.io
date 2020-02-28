@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css"/> 
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>G20 Government Expenditure - Overview</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawAllSheets);
+
+        function drawAllSheets() {
+            drawSheetName('GDPcurrent', 'SELECT A,F',
+                          GDPGeoResponseHandler);
+            drawSheetName('Educurrent', 'SELECT A,B,C,D,E,F',
+                          EduSpendingResponseHandler);
+            drawSheetName('Milcurrent', 'SELECT A,B,C,D,E,F',
+                           MilSpendingResponseHandler);
+            drawSheetName('Healthcurrent', 'SELECT A,B,C,D,E,F',
+                          HealthSpendingResponseHandler);
+            drawSheetName('Educurrent', 'SELECT A,G',
+                          EduBarResponseHandler);
+            drawSheetName('Milcurrent', 'SELECT A,G',
+                           MilBarResponseHandler);
+            drawSheetName('Healthcurrent', 'SELECT A,G',
+                          HealthBarResponseHandler);        
+        } //drawAllSheets
+
+        function drawSheetName(sheetName, query, responseHandler) {
+            var queryString = encodeURIComponent(query);
+            var query = new google.visualization.Query(
+                "https://docs.google.com/spreadsheets/d/1ZpRWxwhz1onjC7SyTYvFTPAoxefZgMnDXPXh6WYN-Y0/gviz/tq?sheet=" + sheetName + "&headers=1&tq=" + queryString
+            );
+            query.send(responseHandler);
+        } //drawSheetName
+
+        function GDPGeoResponseHandler(response) {
+            var data = response.getDataTable();
+            data.sort({column: 1, desc:true});
+
+            var options = {
+                height: 400,
+                colorAxis : {colors: ['#A4D4F3', '#176CA3']},
+                backgroundColor: '#e3e9e9' };
+            
+            var chart = new google.visualization.GeoChart(
+                document.getElementById("GDP_Geo_div"));
+            
+            chart.draw(data, options);
+        } //GDPGeoResponseHandler
+
+
+
+
+        function EduSpendingResponseHandler(response) {
+            var data = response.getDataTable();
+            data.sort({column: 5, desc:true});
+
+            var options = {title: 'Education spending by country in 2012-2016 (%)',
+                           height: 400,
+                           vAxis : {title: 'Spending in Billions ($)'},
+                           hAxis: {title: 'Country'},
+                           backgroundColor: '#e3e9e9' };
+            
+            var chart = new google.visualization.ColumnChart(
+                document.getElementById("Edu_current_div"));
+            
+            chart.draw(data, options);
+        } //EduSpendingResponseHandler
+
+        function MilSpendingResponseHandler(response) {
+            var data = response.getDataTable();
+            data.sort({column: 5, desc:true});
+
+
+            var options = {title: 'Military spending by country in 2012-2016 (%)',
+                           height: 400,
+                           vAxis : {title: 'Spending in Billions ($)'},
+                           hAxis: {title: 'Country'},
+                           backgroundColor: '#e3e9e9' };
+            
+            var chart = new google.visualization.ColumnChart(
+                document.getElementById("Mil_current_div"));
+            
+            chart.draw(data, options);
+        } //milSpendingResponseHandler
+
+        function HealthSpendingResponseHandler(response) {
+            var data = response.getDataTable();
+            data.sort({column: 5, desc:true});
+
+
+            var options = {title: 'Healthcare spending by country in 2012-2016 (%)',
+                           height: 400,
+                           vAxis : {title: 'Spending in Billions ($)'},
+                           hAxis: {title: 'Country'},
+                           backgroundColor: '#e3e9e9' };
+            
+            var chart = new google.visualization.ColumnChart(
+                document.getElementById("Health_current_div"));
+            
+            chart.draw(data, options);
+        } //HealthSpendingResponseHandler
+
+        function EduBarResponseHandler(response) {
+            var data = response.getDataTable();
+            data.sort({column: 1, desc:true});
+
+            var options = {title: 'Average Education spending by country from 2012-2016 (%)',
+                           istrue: true,
+                           backgroundColor: '#e3e9e9' };
+
+            
+            var chart = new google.visualization.PieChart(
+                document.getElementById("Edu_Bar_div"));
+            
+            chart.draw(data, options);
+        } //EduBarResponseHandler
+
+        function MilBarResponseHandler(response) {
+            var data = response.getDataTable();
+            data.sort({column: 1, desc:true});
+
+            var options = {title: 'Average Military spending by country from 2012-2016 (%)',
+                           istrue: true,
+                           backgroundColor: '#e3e9e9' };
+            
+            var chart = new google.visualization.PieChart(
+                document.getElementById("Mil_Bar_div"));
+            
+            chart.draw(data, options);
+        } //MilBarResponseHandler
+
+        function HealthBarResponseHandler(response) {
+            var data = response.getDataTable();
+            data.sort({column: 1, desc:true});
+
+            var options = {title: 'Average Healthcare spending by country from 2012-2016 (%)',
+                           istrue: true,
+                           backgroundColor: '#e3e9e9' };
+            
+            var chart = new google.visualization.PieChart(
+                document.getElementById("Health_Bar_div"));
+            
+            chart.draw(data, options);
+        } //HealthBarResponseHandler
+    </script> 
+
+    
+</head>
+
+<body>
+    <div id="overall">
+        <div id="topbar">
+            <div id="G20logo_picture">
+                <div class="G20logo">
+                <img src="image/Logo.png" alt="G20 logo" width="123" height="116"><!--G20logo-->
+            </div>
+                   <div id="topic">
+                    <h1><a href="index.htm">GOVERNMENT EXPENDITURE<span class="topic_color"> | DATA</span></a></h1>
+                    </div><!--topic-->
+            </div><!--G20logo_picture-->
+
+            <!--serach bar-->
+            <div class="wrap">
+                <div class="search">
+                   <input type="text" class="searchTerm" placeholder="Search G20">
+                   <button type="submit" class="searchButton">
+                     <i class="fa fa-search"></i>
+                  </button>
+                </div>
+            </div> <!--serach bar-->
+
+             <!--social button-->
+            <div class="warp">
+                <a href="https://www.facebook.com/g20org" class="fa fa-facebook"></a>
+                <a href="https://twitter.com/g20org" class="fa fa-twitter"></a>
+                <a href="https://www.instagram.com/g20org/" class="fa fa-instagram"></a>
+                <a href="https://g20.org/en/Pages/home.aspx" class="fa fa-rss"></a>
+           </div>
+
+           <div id="menubar">
+            <ul id="menu">
+                <li><a href="index.htm"><i class="fa fa-fw fa-home"></i> HOME</a></li>
+                <li><a class="picked" href="overview.htm"><i class="fa fa-fw fa-bar-chart"></i> OVERVIEW</a></li>
+                <li><a href="comparison.htm"><i class="fa fa-fw fa-balance-scale"></i> COMPARISON</a></li>
+                <li><a href="trend.htm"><i class="fa fa-fw fa-line-chart"></i> TREND</a></li>
+                <li><a href="about.htm"><i class="fa fa-fw fa-clipboard"></i> ABOUT</a></li>
+            </ul>
+            <!-- menu -->
+        </div>
+        <!-- menubar -->
+    </div>
+    <!-- topbar -->
+
+    <div id="center_body">
+       
+        <h5 style="text-align:center; 
+        font: bold 120% 'century gothic', arial, sans-serif;
+        color: #152765;
+        margin: 0 0 20px 0;
+        padding: 30px 0 5px 0;
+        ">Gross domestic product (GDP) for G20 Countries in 2016</h5>
+        <div class="div1">In 2016, G20 economies is approximately 84 of World’s GDP. According to the Geo map, the United States is the G20's largest economy. The next place is China, Japan, Germany, the United Kingdom, France, and India, respectively. However, South Africa is the G20's smallest national economy, which less than U.S. GDP about 60 times. </div>
+         <div id="GDP_Geo_div" style="width: 700px; height: 430px; position: relative; left: 23%"></div>
+
+        <h5 style="text-align:center; 
+        font: bold 120% 'century gothic', arial, sans-serif;
+        color: #152765;
+        margin: 0 0 0px 0;
+        padding: 0 0 0px 0;
+        ">Government Spending in Each Purpose for G20 Countries in 2012-2016</h5>
+        <div class="div2">The US paid the largest spending in each purpose in 2012-2016. There was increasing trend in US educational and healthcare spending, while other countries were no clear trend. For military, US and Russia spending decreased from 2012-2016, while China and Saudi Arabi increased. </div>
+        <div id="Edu_current_div" style="width: 1100px; height: 400px; position: relative; left: 9%"></div>  
+        <div id="Mil_current_div" style="width: 1100px; height: 400px; position: relative; left: 9%"></div>
+        <div id="Health_current_div" style="width: 1100px; height: 430px; position: relative; left: 9%"></div>
+
+        <h5 style="text-align:center; 
+        font: bold 120% 'century gothic', arial, sans-serif;
+        color: #152765;
+        margin: 0 0 0px 0;
+        padding: 0 0 0px 0;"> Government Spending in Each Purpose for Top Countries from 2012-2016 (Average) </h5>
+     <div class="center">
+        <div class="div3">Focusing on average data, the US contributed to about a half of total G20’s government spending in every purpose. Whereas, China were the second place in military purpose. However, Japan contributed to about 10% in the G20’s educational and healthcare spending. </div>
+        <div id="Edu_Bar_div" style="width: 410px; height: 300px; position: relative; left: 3.5%"></div>
+        <div id="Mil_Bar_div" style="width: 420px; height: 300px; position: relative; left: 3%"></div>
+        <div id="Health_Bar_div" style="width: 410px; height: 300px; position: relative; left: 2.5%"></div>
+    </div><!-- center -->
+    </div>
+    <!-- center_body -->
+
+
+    <div id="footer">
+        All content &copy; 2020. All rights reserved.
+    
+    </div>
+    <!-- footer -->
+</div>
+<!-- overall -->
+</body>
+
+</html>
