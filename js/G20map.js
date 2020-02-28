@@ -12,7 +12,7 @@ function changeImage() {
     }
 }
 
-var intervalHandle = setInterval(changeImage, 1600);
+var intervalHandle = setInterval(changeImage, 2000);
 G20Image.onclick = function() {
     clearInterval(intervalHandle);
 }
